@@ -2,7 +2,7 @@
 #  GMP_FOUND             - system has GMP lib
 #  GMP_INCLUDE_DIR       - the GMP include directory
 #  GMP_LIBRARIES_DIR     - directory where the GMP libraries are located
-#  GMP_LIBRARIES         - Link these to use GMP
+#  GMP_LIBRARY           - Link these to use GMP
 #  GMP_IN_CGAL_AUXILIARY - TRUE if the GMP found is the one distributed with CGAL in the auxiliary folder
 
 include(FindPackageHandleStandardArgs)
@@ -12,7 +12,7 @@ if(GMP_INCLUDE_DIR)
 else()
   set(GMP_in_cache FALSE)
 endif()
-if(NOT GMP_LIBRARIES)
+if(NOT GMP_LIBRARY)
   set(GMP_in_cache FALSE)
 endif()
 
@@ -31,15 +31,15 @@ else()
   	        DOC "The directory containing the GMP header files"
            )
 
-  find_library(GMP_LIBRARIES NAMES libgmp.a gmp.lib gmp libgmp-10 mpir
+  find_library(GMP_LIBRARY NAMES libgmp.a gmp.lib gmp libgmp-10 mpir
     HINTS ENV GMP_LIB_DIR
           ENV GMP_DIR
     PATH_SUFFIXES lib
     DOC "Path to the GMP library"
     )
 
-  if ( GMP_LIBRARIES )
-    get_filename_component(GMP_LIBRARIES_DIR ${GMP_LIBRARIES} PATH CACHE )
+  if ( GMP_LIBRARY )
+    get_filename_component(GMP_LIBRARY ${GMP_LIBRARY} PATH CACHE )
   endif()
 
   # Attempt to load a user-defined configuration for GMP if couldn't be found
